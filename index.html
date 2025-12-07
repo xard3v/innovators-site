@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prosty klon Reddit</title>
+  <style>
+    :root{--bg:#0f1720;--card:#0b1220;--accent:#4f46e5;--muted:#94a3b8;--glass:rgba(255,255,255,0.03)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, sans-serif;background:linear-gradient(180deg,#071029 0%, #071836 100%);color:#e6eef8;min-height:100vh;display:flex;flex-direction:column}
+    .app{flex:1;display:flex;flex-direction:column;max-width:900px;margin:0 auto;width:100%}
+    header{padding:14px 16px;font-weight:600;font-size:18px;border-bottom:1px solid rgba(255,255,255,0.04)}
+    main{flex:1;padding:12px}
+    .page{display:none}
+    .page.active{display:block}
+    /* community list */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .tile{background:var(--card);padding:14px;border-radius:12px;cursor:pointer;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .tile h3{margin:0 0 6px 0;font-size:16px}
+    .tile p{margin:0;color:var(--muted);font-size:13px}
+    /* community view */
+    .comm-header{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    .back{background:var(--glass);border:none;color:inherit;padding:8px 10px;border-radius:8px;cursor:pointer}
+    .posts{display:flex;flex-direction:column;gap:10px}
+    .post{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:10px;border-radius:10px}
+    .post h4{margin:0 0 6px 0;font-size:15px}
+    .post p{margin:0;color:var(--muted);font-size:14px}
+    form.add-post{display:flex;flex-direction:column;gap:8px}
+    input[type=text],textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:8px;color:inherit}
+    button{background:var(--accent);border:none;padding:10px;border-radius:10px;color:white;cursor:pointer}
+    /* other tabs */
+    .card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .profile-row{display:flex;gap:12px;align-items:center}
+    .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#94a3b8,#4f46e5);display:flex;align-items:center;justify-content:center;font-weight:700}
+    /* stopwatch */
+    .timer{font-size:36px;font-weight:700;text-align:center;margin-bottom:10px}
+    .controls{display:flex;gap:8px;justify-content:center}
+    /* bottom nav */
+    nav.bottom{position:sticky;bottom:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.4));padding:8px 12px;border-top:1px solid rgba(255,255,255,0.03)}
+    .tabs{display:flex;gap:8px;justify-content:space-between;max-width:900px;margin:0 auto}
+    .tab{flex:1;background:var(--card);padding:10px;border-radius:10px;text-align:center;cursor:pointer}
+    .tab.active{outline:2px solid rgba(79,70,229,0.18)}
+    small{display:block;color:var(--muted);font-size:12px}
+    /* responsive */
+    @media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}nav.bottom{max-width:900px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header id="title">Społeczności</header>
+    <main>
+      <!-- Tab 1: Społeczności -->
+      <section id="tab-1" class="page active">
+        <div id="communities" class="grid">
+          <div class="tile" data-name="matematyka"><h3>/r/matematyka</h3><p>Pomoc, zadania, pytania</p></div>
+          <div class="tile" data-name="j.polski"><h3>/r/j.polski</h3><p>Literatura, gramatyka</p></div>
+          <div class="tile" data-name="j.angielski"><h3>/r/j.angielski</h3><p>Praktyka i tłumaczenia</p></div>
+          <div class="tile" data-name="chemia"><h3>/r/chemia</h3><p>Reakcje, zadania, laboratorium</p></div>
+        </div>
+      </section>
+
+      <!-- Community view (dynamic) -->
+      <section id="community-view" class="page">
+        <div class="comm-header">
+          <button class="back" id="backBtn">◀ Back</button>
+          <div>
+            <h2 id="commTitle">/r/matematyka</h2>
+            <small id="commDesc">Społeczność</small>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:10px">
+          <form class="add-post" id="addPostForm">
+            <input type="text" id="postTitle" placeholder="Tytuł" required />
+            <textarea id="postBody" placeholder="Treść (np. prośba o pomoc)" rows="3"></textarea>
+            <button type="submit">Dodaj post</button>
+          </form>
+        </div>
+        <div class="posts" id="postsList"></div>
+      </section>
+
+      <!-- Tab 2: Poznaj -->
+      <section id="tab-2" class="page">
+        <div class="card">
+          <div class="profile-row">
+            <div class="avatar">A</div>
+            <div>
+              <h3>Anna Kowalska</h3>
+              <small>17 lat • Liceum Ogólnokształcące</small>
+            </div>
+          </div>
+          <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)">
+          <h4>Zainteresowania</h4>
+          <p>Matematyka, sztuczna inteligencja, wspinaczka, fotografia.</p>
+        </div>
+      </section>
+
+      <!-- Tab 3: Skupienie (stoper) -->
+      <section id="tab-3" class="page">
+        <div class="card" style="text-align:center">
+          <div class="timer" id="timer">00:00:00.00</div>
+          <div class="controls">
+            <button id="startBtn">Start</button>
+            <button id="stopBtn">Stop</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+          <div style="margin-top:10px;color:var(--muted)">Użyj stopera do sesji nauki.</div>
+        </div>
+      </section>
+
+      <!-- Tab 4: Rozwój (top 5 uczelni w Poznaniu) -->
+      <section id="tab-4" class="page">
+        <div class="card">
+          <h3>Top 5 uczelni w Poznaniu</h3>
+          <ol>
+            <li>Uniwersytet im. Adama Mickiewicza w Poznaniu (UAM)</li>
+            <li>Politechnika Poznańska</li>
+            <li>Uniwersytet Medyczny im. Karola Marcinkowskiego w Poznaniu</li>
+            <li>Akademia Wychowania Fizycznego w Poznaniu</li>
+            <li>Wyższa Szkoła Bankowa w Poznaniu</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Tab 5: Profil -->
+      <section id="tab-5" class="page">
+        <div class="card">
+          <div class="profile-row">
+            <div class="avatar">K</div>
+            <div>
+              <h3>Krzysiu</h3>
+              <small>15 lat</small>
+            </div>
+          </div>
+          <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)">
+          <h4>Zainteresowania</h4>
+          <p>Komputery, telefony, gry, harcerstwo.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="bottom">
+      <div class="tabs">
+        <div class="tab active" data-tab="1">Społeczności<small>/r</small></div>
+        <div class="tab" data-tab="2">Poznaj<small>osobę</small></div>
+        <div class="tab" data-tab="3">Skupienie<small>stoper</small></div>
+        <div class="tab" data-tab="4">Rozwój<small>uczelnie</small></div>
+        <div class="tab" data-tab="5">Profil<small>ja</small></div>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    // --- Tab handling ---
+    const tabs = document.querySelectorAll('.tab');
+    const pages = document.querySelectorAll('.page');
+    const title = document.getElementById('title');
+    function showTab(n){
+      pages.forEach(p=>p.classList.remove('active'));
+      document.getElementById('tab-'+n).classList.add('active');
+      tabs.forEach(t=>t.classList.remove('active'));
+      document.querySelector('.tab[data-tab="'+n+'"]')?.classList.add('active');
+      // set title
+      const titles = {1:'Społeczności',2:'Poznaj',3:'Skupienie',4:'Rozwój',5:'Profil'};
+      title.textContent = titles[n] || 'App';
+    }
+    tabs.forEach(t=>t.addEventListener('click',()=>showTab(t.dataset.tab)));
+
+    // --- Community navigation + posts ---
+    const communityTiles = document.querySelectorAll('.tile');
+    const communityView = document.getElementById('community-view');
+    const backBtn = document.getElementById('backBtn');
+    const commTitle = document.getElementById('commTitle');
+    const commDesc = document.getElementById('commDesc');
+    const postsList = document.getElementById('postsList');
+    const addPostForm = document.getElementById('addPostForm');
+
+    let currentComm = null;
+
+    function loadPosts(comm){
+      postsList.innerHTML='';
+      const key = 'posts_'+comm;
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      if(arr.length===0){
+        postsList.innerHTML = '<div style="color:var(--muted)">Brak postów. Dodaj pierwszy!</div>';
+        return;
+      }
+      arr.slice().reverse().forEach(p=>{
+        const el = document.createElement('div');el.className='post';
+        el.innerHTML = `<h4>${escapeHtml(p.title)}</h4><p>${escapeHtml(p.body)}</p>`;
+        postsList.appendChild(el);
+      });
+    }
+
+    function openCommunity(name){
+      currentComm = name;
+      commTitle.textContent = `/r/${name}`;
+      commDesc.textContent = 'Społeczność: '+name;
+      pages.forEach(p=>p.classList.remove('active'));
+      communityView.classList.add('active');
+      title.textContent = `/r/${name}`;
+      loadPosts(name);
+    }
+
+    communityTiles.forEach(t=>t.addEventListener('click', ()=>openCommunity(t.dataset.name)));
+    backBtn.addEventListener('click', ()=>{ showTab(1); });
+
+    addPostForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      const titleVal = document.getElementById('postTitle').value.trim();
+      const bodyVal = document.getElementById('postBody').value.trim();
+      if(!titleVal) return alert('Podaj tytuł');
+      const key = 'posts_'+currentComm;
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.push({title:titleVal,body:bodyVal,created:Date.now()});
+      localStorage.setItem(key, JSON.stringify(arr));
+      addPostForm.reset();
+      loadPosts(currentComm);
+    });
+
+    // --- Stopwatch ---
+    let start=0, elapsed=0, timerInterval=null;
+    const timerDisplay = document.getElementById('timer');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    function fmt(ms){
+      const h = Math.floor(ms/3600000); ms%=3600000;
+      const m = Math.floor(ms/60000); ms%=60000;
+      const s = Math.floor(ms/1000); const cs = Math.floor((ms%1000)/10);
+      return `${pad(h)}:${pad(m)}:${pad(s)}.${pad(cs,2)}`;
+    }
+    function pad(n,z=2){return n.toString().padStart(z,'0')}
+    function updateTimer(){
+      const now = Date.now();
+      timerDisplay.textContent = fmt(elapsed + (now-start));
+    }
+    startBtn.addEventListener('click', ()=>{
+      if(timerInterval) return;
+      start = Date.now();
+      timerInterval = setInterval(updateTimer,50);
+    });
+    stopBtn.addEventListener('click', ()=>{
+      if(!timerInterval) return;
+      clearInterval(timerInterval);timerInterval=null;
+      elapsed += Date.now()-start;
+      updateTimer();
+    });
+    resetBtn.addEventListener('click', ()=>{
+      clearInterval(timerInterval);timerInterval=null;start=0;elapsed=0;timerDisplay.textContent='00:00:00.00';
+    });
+
+    // --- helpers ---
+    function escapeHtml(str){
+      if(!str) return '';
+      return str.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c]));
+    }
+
+    // init: show tab 1
+    showTab(1);
+  </script>
+</body>
+</html>
