@@ -45,8 +45,11 @@ main{
   gap:10px;
 }
 
+.card{
+   background:var(--panel);
+}
+
 .tile,.card{
-  background:var(--panel);
   padding:12px;
   border-radius:12px;
   box-shadow:0 6px 18px rgba(0,0,0,.6);
