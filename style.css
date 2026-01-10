@@ -12,7 +12,7 @@ html,body{
   margin:0;
   font-family:Inter,system-ui;
   color:#e6eef8;
-  background:linear-gradient(180deg,#071029,#071836);
+  background:rgba(0, 0, 0);
 }
 
 .app{
