@@ -48,7 +48,7 @@ main{
 
 .tile{cursor:pointer}
 
-.small{color:var(--muted);font-size:13px}
+.small{color: rgba(0,0,0);font-size:13px}
 
 input,textarea{
   width:100%;
@@ -61,7 +61,7 @@ input,textarea{
 }
 
 button{
-  background:var(--accent);
+  background:rgba(185, 191, 129);
   border:none;
   color:white;
   padding:10px;
@@ -97,7 +97,7 @@ nav.bottom{
 }
 
 .tab{
-  background:var(--panel);
+  background:rgba(115, 123, 49);
   padding:8px;
   border-radius:10px;
   text-align:center;
