@@ -54,6 +54,10 @@ main{
 
 .tile{cursor:pointer}
 
+.tile, .Matematyka{
+  background: solid hex(#4A90E2);
+}
+  
 .small{color:var(--muted);font-size:13px}
 
 input,textarea{
