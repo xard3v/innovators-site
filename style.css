@@ -54,6 +54,35 @@ main{
 
 .tile{cursor:pointer}
 
+.tile[data-name="Matematyka"] {
+  background: #ff6b6b;
+}
+
+.tile[data-name="Język polski"] {
+  background: #feca57;
+}
+
+.tile[data-name="Język angielski"] {
+  background: #54a0ff;
+}
+
+.tile[data-name="Chemia"] {
+  background: #1dd1a1;
+}
+
+.tile[data-name="Biologia"] {
+  background: #2ecc71;
+}
+
+.tile[data-name="Geografia"] {
+  background: #48dbfb;
+}
+
+.tile[data-name="Historia"] {
+  background: #c56cf0;
+}
+
+
 .small{color:var(--muted);font-size:13px}
 
 input,textarea{
