@@ -114,3 +114,36 @@ nav.bottom{
 .tab.active{
   outline:2px solid rgba(79,70,229,.4);
 }
+
+.tile[data-name="Matematyka"] {
+  background-color: #ff6b6b !important;
+}
+
+.tile[data-name="Język polski"] {
+  background-color: #feca57 !important;
+}
+
+.tile[data-name="Język angielski"] {
+  background-color: #54a0ff !important;
+}
+
+.tile[data-name="Chemia"] {
+  background-color: #1dd1a1 !important;
+}
+
+.tile[data-name="Biologia"] {
+  background-color: #2ecc71 !important;
+}
+
+.tile[data-name="Geografia"] {
+  background-color: #48dbfb !important;
+}
+
+.tile[data-name="Historia"] {
+  background-color: #c56cf0 !important;
+}
+
+.tile {
+  color: white;
+}
+
