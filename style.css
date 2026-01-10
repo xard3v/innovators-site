@@ -46,6 +46,7 @@ main{
 }
 
 .tile,.card{
+  background:var(--panel);
   padding:12px;
   border-radius:12px;
   box-shadow:0 6px 18px rgba(0,0,0,.6);
@@ -53,10 +54,6 @@ main{
 
 .tile{cursor:pointer}
 
-.tile, .Matematyka{
-  background: solid hex(#4A90E2);
-}
-  
 .small{color:var(--muted);font-size:13px}
 
 input,textarea{
