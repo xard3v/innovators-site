@@ -105,33 +105,33 @@ nav.bottom{
 }
 
 .tile[data-name="Matematyka"] {
-  background-color: rgba(101, 113, 121) !important;
+  background-color: #657179 !important;
 }
 
 .tile[data-name="Język polski"] {
-  background-color: rgba(80, 27, 71) !important;
+  background-color: #501b47 !important;
 }
 
 .tile[data-name="Język angielski"] {
-  background-color: rgba(91, 45, 41) !important;
+  background-color: #462f50 !important;
 }
 
 .tile[data-name="Chemia"] {
-  background-color: rgba(70, 47, 80) !important;
+  background-color: #4f0030 !important;
 }
 
 .tile[data-name="Biologia"] {
-  background-color: rgba(4, 32, 57) !important;
+  background-color: #004f01 !important;
 }
 
 .tile[data-name="Geografia"] {
-  background-color: rgba(57, 130, 122) !important;
+  background-color: #39827a !important;
 }
 
 .tile[data-name="Historia"] {
-  background-color: rgba(142, 110, 83) !important;
+  background-color: #5b2d29 !important;
 }
 
 .tile[data-name="Informatyka"] {
-  background-color: rgba(44, 62, 80)) !important;
+  background-color: #042039 !important;
 }
