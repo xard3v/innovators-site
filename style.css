@@ -43,7 +43,6 @@ main{
   background:rgba(115, 123, 49);
   padding:12px;
   border-radius:12px;
-  box-shadow:0 6px 18px rgba(0,0,0,.6);
 }
 
 .tile{cursor:pointer}
