@@ -39,7 +39,13 @@ main{
   gap:10px;
 }
 
-.tile,.card{
+.card{
+  background-color: #2b0185;
+  padding:12px;
+  border-radius:12px;
+}
+
+.tile{
   background-color: #246615;
   padding:12px;
   border-radius:12px;
