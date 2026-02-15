@@ -1,0 +1,169 @@
+
+*{box-sizing:border-box}
+
+html,body{
+  height:100%;
+  margin:0;
+  font-family:Inter,system-ui;
+  color:#e6eef8;
+  background:rgba(0, 0, 0);
+}
+
+.app{
+  max-width:430px;
+  margin:0 auto;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+header{
+  padding:14px 16px;
+  font-weight:700;
+  font-size:18px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+main{
+  flex:1;
+  overflow:auto;
+  padding:12px;
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.card{
+  background-color: #090233;
+  padding:12px;
+  border-radius:12px;
+}
+
+.tile{
+  background-color: #246615;
+  padding:12px;
+  border-radius:12px;
+}
+
+.tile{cursor:pointer}
+
+.small{color: rgba(0,0,0);font-size:13px}
+
+input,textarea{
+  width:100%;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.08);
+  padding:10px;
+  border-radius:10px;
+  color:inherit;
+  margin-top:8px;
+}
+
+button{
+  background-color: #15664c;
+  border:none;
+  color:white;
+  padding:10px;
+  border-radius:10px;
+  font-weight:700;
+  margin-top:8px;
+  cursor:pointer;
+}
+
+.row{display:flex;gap:8px;align-items:center}
+
+.timer{
+  font-size:30px;
+  font-weight:800;
+}
+
+.controls{
+  display:flex;
+  gap:8px;
+}
+
+.controls button{flex:1}
+
+nav.bottom{
+  padding:10px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+
+.tab{
+  background-color: #2b0185;
+  padding:8px;
+  border-radius:10px;
+  text-align:center;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.tile[data-name="Matematyka"] {
+  background-color: #6B7780 !important;
+}
+
+.tile[data-name="Język polski"] {
+  background-color: #4B1F45 !important;
+}
+
+.tile[data-name="Język angielski"] {
+  background-color: #3E2A4D !important;
+}
+
+.tile[data-name="Chemia"] {
+  background-color: #5A0035 !important;
+}
+
+.tile[data-name="Biologia"] {
+  background-color: #0B4F0B !important;
+}
+
+.tile[data-name="Geografia"] {
+  background-color: #3F7F76 !important;
+}
+
+.tile[data-name="Historia"] {
+  background-color: #5B2E2A !important;
+}
+
+.tile[data-name="Informatyka"] {
+  background-color: #0A2540 !important;
+}
+
+.tile[data-name="Fizyka"] {
+  background-color: #1F3A5F !important;
+}
+
+.tile[data-name="EDB"] {
+  background-color: #4A1C1C !important;
+}
+
+.tile[data-name="Religia"] {
+  background-color: #3D3A2A !important;
+}
+
+.tile[data-name="Muzyka"] {
+  background-color: #3B1C4A !important;
+}
+
+.tile[data-name="Język Niemiecki"] {
+  background-color: #2C2C54 !important;
+}
+
+.tile[data-name="Język Hiszpański"] {
+  background-color: #5C2A1E !important;
+}
+
+

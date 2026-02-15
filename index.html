@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Aplikacja Edu - mobilna</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app" role="application">
+    <header id="title">Społeczności</header>
+
+    <main>
+      <!-- Tab 1: Społeczności -->
+      <section id="tab-1" class="page active">
+        <div class="grid" id="communities">
+          <div class="tile" data-name="Matematyka"><h3>Matematyka</h3><p>Pomoc, zadania, rozwiązywanie</p></div>
+          <div class="tile" data-name="Język polski"><h3>Język polski</h3><p>Lektury, analiza, gramatyka</p></div>
+          <div class="tile" data-name="Język angielski"><h3>Język angielski</h3><p>Tłumaczenia, konwersacje</p></div>
+          <div class="tile" data-name="Chemia"><h3>Chemia</h3><p>Reakcje, zadania, wzory</p></div>
+          <div class="tile" data-name="Biologia"><h3>Biologia</h3><p>Fizyka życia, zadania</p></div>
+          <div class="tile" data-name="Geografia"><h3>Geografia</h3><p>Mapy, klimat, testy</p></div>
+          <div class="tile" data-name="Historia"><h3>Historia</h3><p>Sprawdziany, daty, wydarzenia</p></div>
+          <div class="tile" data-name="Informatyka"><h3>Informatyka</h3><p>Pliki, zadania, rozwiązania</p></div>
+          <div class="tile" data-name="Fizyka"><h3>Fizyka</h3><p>Pomoc, zadania, rozwiązywanie</p></div>
+          <div class="tile" data-name="EDB"><h3>EDB</h3><p>Pomoc, zadania, rozwiązywanie</p></div>
+          <div class="tile" data-name="Religia"><h3>Religia</h3><p>Pomoc, zadania, rozwiązywanie</p></div>
+          <div class="tile" data-name="Muzyka"><h3>Muzyka</h3><p>Pomoc, zadania, rozwiązywanie</p></div>
+          <div class="tile" data-name="Język Niemiecki"><h3>Język Niemiecki</h3><p>Pomoc, zadania, rozwiązywanie</p></div>
+          <div class="tile" data-name="Język Hiszpański"><h3>Język Hiszpański</h3><p>Pomoc, zadania, rozwiązywanie</p></div>
+        </div>
+      </section>
+
+      <!-- Widok społeczności -->
+      <section id="community-view" class="page">
+        <div class="row header-row">
+          <button id="backBtn">◀ Wróć</button>
+          <div>
+            <h2 id="commTitle"></h2>
+            <div id="commDesc" class="small"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <input id="postTitle" placeholder="Tytuł" />
+          <textarea id="postBody" rows="3" placeholder="Treść"></textarea>
+          <button id="addPost">Dodaj post</button>
+        </div>
+
+        <div id="postsList"></div>
+      </section>
+
+      <!-- Tab 2 -->
+      <section id="tab-2" class="page">
+        <div class="card">
+          <h3>Polecane osoby</h3>
+          <div class="grid">
+            <div class="tile"><h3>Oskar(bot)</h3><p>Piłka nożna</p></div>
+            <div class="tile"><h3>Natalia(bot)</h3><p>Rysunek</p></div>
+            <div class="tile"><h3>Bartek(bot)</h3><p>Informatyka</p></div>
+            <div class="tile"><h3>Julia(bot)</h3><p>Muzyka</p></div>
+            <div class="tile"><h3>Maja(bot)</h3><p>Programowanie</p></div>
+            <div class="tile"><h3>Kamil(bot)</h3><p>Robotyka</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 3 -->
+      <section id="tab-3" class="page">
+        <div class="card center">
+          <div class="timer" id="timer">00:00:00.00</div>
+          <div class="controls">
+            <button id="startBtn">Start</button>
+            <button id="stopBtn">Stop</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+        </div>
+      </section>
+
+       <!-- Tab 4 -->
+      <section id="tab-4" class="page">
+        <div class="card">
+          <h3>Top 5 uczelni w Poznaniu</h3>
+          <ol>
+            <li>UAM</li>
+            <li>Politechnika Poznańska</li>
+            <li>Uniwersytet Medyczny</li>
+            <li>AWF</li>
+            <li>WSB</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Tab 5 -->
+      <section id="tab-5" class="page">
+        <div class="card">
+          <h3>Twój profil</h3>
+          <input id="profileName" placeholder="Imię" />
+          <input id="profileAge" placeholder="Wiek" />
+          <textarea id="profileInterests" rows="3" placeholder="Zainteresowania"></textarea>
+          <button id="saveProfile">Zapisz profil</button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom">
+      <div class="tabs">
+        <div class="tab active" data-tab="1">Społeczności</div>
+        <div class="tab" data-tab="2">Poznaj</div>
+        <div class="tab" data-tab="3">Skupienie</div>
+        <div class="tab" data-tab="4">To do</div>
+        <div class="tab" data-tab="5">Profil</div>
+      </div>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
