@@ -1,28 +1,3 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyAIkugtARmZck-LA9CaKLjHrt2z05NSJu8",
-    authDomain: "iotproject-2644e.firebaseapp.com",
-    projectId: "iotproject-2644e",
-    storageBucket: "iotproject-2644e.firebasestorage.app",
-    messagingSenderId: "300270133705",
-    appId: "1:300270133705:web:56904d3e1d882bf2c48818"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
-// laczenie strony z baza
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = 'https://zqcapljfxmkncbxlbhar.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxY2FwbGpmeG1rbmNieGxiaGFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExNDk5MTcsImV4cCI6MjA4NjcyNTkxN30.qSTWa1P3LzZlQ4N2LEY2Bl_8cC0TPXNMmp2RYOD1IfM'
-const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Funkcja wysyłająca post
 async function sendPost(user, text) {
