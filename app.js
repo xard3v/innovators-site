@@ -1,12 +1,4 @@
 
-// Funkcja wysyłająca post
-async function sendPost(user, text) {
-    const { data, error } = await supabase
-        .from('posts')
-        .insert([{ username: user, content: text }])
-    
-    if (error) console.error(error)
-    else location.reload(); // Odśwież, żeby zobaczyć nowy post
 }
 
 //nwm
