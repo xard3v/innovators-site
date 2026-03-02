@@ -1,5 +1,6 @@
-}
-
+const profileName = document.getElementById('profileName');
+const profileAge = document.getElementById('profileAge');
+const profileInterests = document.getElementById('profileInterests');
 //nwm
 const tabs = document.querySelectorAll('.tab');
 const pages = document.querySelectorAll('.page');
